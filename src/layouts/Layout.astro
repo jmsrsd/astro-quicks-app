@@ -17,8 +17,12 @@ const { title } = Astro.props;
     <title>{title ?? `Quicks`}</title>
   </head>
   <body>
-    <div>
-      <slot />
+    <div
+      class="tw-relative tw-min-w-max tw-min-h-screen tw-overflow-auto tw-bg-[#333333]"
+    >
+      <div class="tw-absolute tw-min-w-[1280px] tw-w-full">
+        <slot />
+      </div>
     </div>
   </body>
 </html>
