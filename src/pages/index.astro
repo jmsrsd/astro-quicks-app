@@ -1,6 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import searchIcon from "../icons/search-icon.svg?raw";
+import actionIcon from "../icons/action-icon.svg?raw";
+import inboxIcon from "../icons/inbox-icon.svg?raw";
+import taskIcon from "../icons/task-icon.svg?raw";
 ---
 
 <Layout>
@@ -19,6 +22,35 @@ import searchIcon from "../icons/search-icon.svg?raw";
         class="tw-w-full tw-h-[58px] tw-bg-[#4F4F4F] tw-flex tw-flex-row tw-items-center tw-justify-start tw-px-6"
       >
         <Fragment set:html={searchIcon} />
+      </div>
+    </div>
+    <div
+      class="tw-h-[86px] tw-flex tw-flex-col tw-justify-end tw-fixed tw-right-[34px] tw-bottom-[27px] tw-w-[68px]"
+    >
+      <div
+        class="tw-gap-[14px] tw-flex tw-flex-col tw-items-center tw-justify-center tw-rounded-full tw-bg-[#4f62f0] tw-min-h-[68px] tw-min-w-[68px]"
+      >
+        <Fragment set:html={actionIcon} />
+      </div>
+    </div>
+    <div
+      class="tw-gap-[14px] tw-items-center tw-h-[86px] tw-flex tw-flex-col tw-justify-end tw-fixed tw-right-32 tw-bottom-[27px] tw-w-[68px]"
+    >
+      <div class="tw-font-bold tw-text-sm tw-text-[#f2f2f2]">{`Inbox`}</div>
+      <div
+        class="tw-flex tw-flex-col tw-items-center tw-justify-center tw-rounded-full tw-bg-[#f2f2f2] tw-min-h-[68px] tw-min-w-[68px]"
+      >
+        <Fragment set:html={inboxIcon} />
+      </div>
+    </div>
+    <div
+      class="tw-gap-[14px] tw-items-center tw-h-[86px] tw-flex tw-flex-col tw-justify-end tw-fixed tw-right-[214px] tw-bottom-[27px] tw-w-[68px]"
+    >
+      <div class="tw-font-bold tw-text-sm tw-text-[#f2f2f2]">{`Task`}</div>
+      <div
+        class="tw-flex tw-flex-col tw-items-center tw-justify-center tw-rounded-full tw-bg-[#f2f2f2] tw-min-h-[68px] tw-min-w-[68px]"
+      >
+        <Fragment set:html={taskIcon} />
       </div>
     </div>
   </div>
