@@ -1,9 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import searchIcon from "../icons/search-icon.svg?raw";
+import SearchBar from "../components/bars/SearchBar.astro";
 import ActionFAB from "../components/fabs/ActionFAB.astro";
 import InboxFAB from "../components/fabs/InboxFAB.astro";
 import TaskFAB from "../components/fabs/TaskFAB.astro";
+import searchIcon from "../icons/search-dark-icon.svg?raw";
 ---
 
 <Layout>
@@ -16,10 +17,30 @@ import TaskFAB from "../components/fabs/TaskFAB.astro";
     <div
       class="tw-h-full tw-flex tw-w-full tw-flex-col tw-items-start tw-justify-start"
     >
+      <SearchBar />
+    </div>
+    <div
+      class="tw-absolute tw-right-[34px] tw-bottom-[110px] tw-flex tw-flex-row-reverse tw-items-center tw-justify-end tw-gap-[26px]"
+    >
       <div
-        class="tw-w-full tw-h-[58px] tw-bg-[#4F4F4F] tw-flex tw-flex-row tw-items-center tw-justify-start tw-px-6"
+        class="tw-h-[737px] tw-w-[734px] tw-rounded-md tw-border tw-border-[#bdbdbd] tw-bg-white tw-flex tw-flex-col tw-items-center tw-justify-start"
       >
-        <Fragment set:html={searchIcon} />
+        <div class="tw-flex tw-pt-[20px] tw-px-[34px] tw-w-full">
+          <div
+            class="tw-rounded-md tw-w-full tw-border tw-border-[#828282] tw-h-8 tw-flex tw-flex-row tw-items-center tw-justify-center tw-px-[58px]"
+          >
+            <div class="tw-text-sm">{`Search`}</div>
+            <div class="tw-w-full"></div>
+            <Fragment set:html={searchIcon} />
+          </div>
+        </div>
+        <div
+          class="tw-h-full tw-flex tw-flex-col tw-items-center tw-justify-center"
+        >
+          <div class="tw-text-base tw-font-semibold tw-text-[#4f4f4f]">
+            {`Loading Chats ...`}
+          </div>
+        </div>
       </div>
     </div>
     <div
