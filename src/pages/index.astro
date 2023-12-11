@@ -4,7 +4,7 @@ import SearchBar from "../components/bars/SearchBar.astro";
 import ActionFAB from "../components/fabs/ActionFAB.astro";
 import InboxFAB from "../components/fabs/InboxFAB.astro";
 import TaskFAB from "../components/fabs/TaskFAB.astro";
-import searchIcon from "../icons/search-dark-icon.svg?raw";
+import SearchField from "../components/fields/SearchField.astro";
 ---
 
 <Layout>
@@ -26,13 +26,7 @@ import searchIcon from "../icons/search-dark-icon.svg?raw";
         class="tw-h-[737px] tw-w-[734px] tw-rounded-md tw-border tw-border-[#bdbdbd] tw-bg-white tw-flex tw-flex-col tw-items-center tw-justify-start"
       >
         <div class="tw-flex tw-pt-[20px] tw-px-[34px] tw-w-full">
-          <div
-            class="tw-rounded-md tw-w-full tw-border tw-border-[#828282] tw-h-8 tw-flex tw-flex-row tw-items-center tw-justify-center tw-px-[58px]"
-          >
-            <div class="tw-text-sm">{`Search`}</div>
-            <div class="tw-w-full"></div>
-            <Fragment set:html={searchIcon} />
-          </div>
+          <SearchField />
         </div>
         <div
           class="tw-h-full tw-flex tw-flex-col tw-items-center tw-justify-center"
