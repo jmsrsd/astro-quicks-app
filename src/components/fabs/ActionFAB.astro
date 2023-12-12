@@ -1,8 +1,13 @@
 ---
 import actionIcon from "../../icons/action-icon.svg?raw";
+
+const { props } = Astro;
 ---
 
-<div class="tw-h-[86px] tw-flex tw-flex-col tw-justify-end tw-w-[68px]">
+<div
+  {...props}
+  class="tw-h-[86px] tw-flex tw-flex-col tw-justify-end tw-w-[68px]"
+>
   <div
     class="tw-gap-[14px] tw-flex tw-flex-col tw-items-center tw-justify-center tw-rounded-full tw-bg-[#4f62f0] tw-min-h-[68px] tw-min-w-[68px]"
   >

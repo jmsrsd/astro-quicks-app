@@ -1,10 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import SearchBar from "../components/bars/SearchBar.astro";
-import ActionFAB from "../components/fabs/ActionFAB.astro";
-import InboxFAB from "../components/fabs/InboxFAB.astro";
-import TaskFAB from "../components/fabs/TaskFAB.astro";
-import SearchField from "../components/fields/SearchField.astro";
+import ChatCard from "../components/cards/ChatCard.astro";
 ---
 
 <Layout>
@@ -19,30 +16,13 @@ import SearchField from "../components/fields/SearchField.astro";
     >
       <SearchBar />
     </div>
+    {false && <ChatCard />}
     <div
-      class="tw-absolute tw-right-[34px] tw-bottom-[110px] tw-flex tw-flex-row-reverse tw-items-center tw-justify-end tw-gap-[26px]"
+      hx-trigger="intersect once"
+      hx-get="/api/view/bar/fab"
+      hx-swap="outerHTML transition:true"
+      class="tw-absolute tw-right-[34px] tw-bottom-[27px]"
     >
-      <div
-        class="tw-h-[737px] tw-w-[734px] tw-rounded-md tw-border tw-border-[#bdbdbd] tw-bg-white tw-flex tw-flex-col tw-items-center tw-justify-start"
-      >
-        <div class="tw-flex tw-pt-[20px] tw-px-[34px] tw-w-full">
-          <SearchField />
-        </div>
-        <div
-          class="tw-h-full tw-flex tw-flex-col tw-items-center tw-justify-center"
-        >
-          <div class="tw-text-base tw-font-semibold tw-text-[#4f4f4f]">
-            {`Loading Chats ...`}
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="tw-absolute tw-right-[34px] tw-bottom-[27px] tw-flex tw-flex-row-reverse tw-items-center tw-justify-end tw-gap-[26px]"
-    >
-      <ActionFAB />
-      <InboxFAB />
-      <TaskFAB />
     </div>
   </div>
 </Layout>

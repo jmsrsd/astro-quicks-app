@@ -1,14 +1,19 @@
 ---
 import "../styles/main.css";
+import { ViewTransitions } from "astro:transitions";
+import { useSearchParams } from "../utils/searchParams";
 
 interface Props {
   title?: string;
 }
 
 const { title } = Astro.props;
+
+const { url } = Astro;
+
+const [searchParams] = useSearchParams({ url });
 ---
 
-<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -17,8 +22,21 @@ const { title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title ?? `Quicks`}</title>
+    <ViewTransitions />
   </head>
   <body>
+    <script>
+      import htmx from "htmx.org";
+
+      htmx.on("htmx:afterSettle", function () {
+        [...htmx.findAll(".htmx-settling")].forEach(htmx.remove);
+      });
+    </script>
+
+    <script define:vars={{ searchParams }}>
+      document.searchParams = searchParams;
+    </script>
+
     <div
       class="tw-font-lato tw-relative tw-overflow-auto tw-bg-[#333333] tw-min-h-screen tw-min-w-full"
     >

@@ -1,0 +1,22 @@
+---
+import SearchField from "../fields/SearchField.astro";
+---
+
+<div
+  class="tw-absolute tw-right-[34px] tw-bottom-[110px] tw-flex tw-flex-row-reverse tw-items-center tw-justify-end tw-gap-[26px]"
+>
+  <div
+    class="tw-h-[737px] tw-w-[734px] tw-rounded-md tw-border tw-border-[#bdbdbd] tw-bg-white tw-flex tw-flex-col tw-items-center tw-justify-start"
+  >
+    <div class="tw-flex tw-pt-[20px] tw-px-[34px] tw-w-full">
+      <SearchField />
+    </div>
+    <div
+      class="tw-h-full tw-flex tw-flex-col tw-items-center tw-justify-center"
+    >
+      <div class="tw-text-base tw-font-semibold tw-text-[#4f4f4f]">
+        {`Loading Chats ...`}
+      </div>
+    </div>
+  </div>
+</div>

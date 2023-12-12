@@ -1,0 +1,11 @@
+---
+import FABBar from "../../../../components/bars/FABBar.astro";
+
+import { useSearchParams } from "../../../../utils/searchParams";
+
+const { url } = Astro;
+
+const [searchParams] = useSearchParams({ url });
+---
+
+<FABBar {...searchParams} />
