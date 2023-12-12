@@ -11,18 +11,25 @@ const opened = props.opened === "true";
 <div
   id="view-bar-fab"
   class="tw-absolute tw-right-[34px] tw-bottom-[27px] tw-flex tw-flex-row-reverse tw-items-center tw-justify-end tw-gap-[26px]"
-  hx-get="/api/view/bar/fab?opened=false"
-  hx-swap="outerHTML transition:true"
-  hx-trigger="mouseleave once delay:30ms"
-  hx-target="#view-bar-fab"
+  {...opened === false
+    ? {}
+    : {
+        "hx-get": "/api/view/bar/fab?opened=false",
+        "hx-swap": "outerHTML transition:true",
+        "hx-trigger": "mouseleave once",
+        "hx-target": "#view-bar-fab",
+      }}
 >
   <ActionFAB
     id="view-bar-fab-action"
-    hx-swap="outerHTML transition:true"
-    hx-get="/api/view/bar/fab?opened=true"
-    hx-trigger="mouseenter once delay:30ms"
-    hx-target="#view-bar-fab"
-    {...{ "hx-disable": opened ? true : undefined }}
+    {...opened
+      ? {}
+      : {
+          "hx-swap": "outerHTML transition:true",
+          "hx-get": "/api/view/bar/fab?opened=true",
+          "hx-trigger": "mouseenter once",
+          "hx-target": "#view-bar-fab",
+        }}
   />
   {
     opened && (
