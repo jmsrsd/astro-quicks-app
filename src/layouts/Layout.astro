@@ -1,17 +1,11 @@
 ---
-import "../styles/main.css";
 import { ViewTransitions } from "astro:transitions";
-import { useSearchParams } from "../utils/searchParams";
 
 interface Props {
   title?: string;
 }
 
 const { title } = Astro.props;
-
-const { url } = Astro;
-
-const [searchParams] = useSearchParams({ url });
 ---
 
 <html lang="en">
@@ -26,15 +20,19 @@ const [searchParams] = useSearchParams({ url });
   </head>
   <body>
     <script>
+      import "../styles/main.css";
       import htmx from "htmx.org";
 
+      /// Clean up leftover htmx-settlings
       htmx.on("htmx:afterSettle", function () {
-        [...htmx.findAll(".htmx-settling")].forEach(htmx.remove);
-      });
-    </script>
+        const settlings = [...document.getElementsByClassName("htmx-settling")];
 
-    <script define:vars={{ searchParams }}>
-      document.searchParams = searchParams;
+        console.log(settlings);
+
+        settlings.forEach(function (settling) {
+          htmx.remove(settling);
+        });
+      });
     </script>
 
     <div

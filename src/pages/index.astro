@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import SearchBar from "../components/bars/SearchBar.astro";
 import ChatCard from "../components/cards/ChatCard.astro";
+import FABBar from "../components/bars/FABBar.astro";
 ---
 
 <Layout>
@@ -17,12 +18,6 @@ import ChatCard from "../components/cards/ChatCard.astro";
       <SearchBar />
     </div>
     {false && <ChatCard />}
-    <div
-      hx-trigger="intersect once"
-      hx-get="/api/view/bar/fab"
-      hx-swap="outerHTML transition:true"
-      class="tw-absolute tw-right-[34px] tw-bottom-[27px]"
-    >
-    </div>
+    <FABBar />
   </div>
 </Layout>
