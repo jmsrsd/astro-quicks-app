@@ -8,43 +8,51 @@ const { props, url } = Astro;
 
 const [searchParams] = useSearchParams({ url });
 
-for (const key of [...Object.keys(props), ...Object.keys(searchParams)]) {
+const keys = [...Object.keys(props), ...Object.keys(searchParams)];
+
+for (const key of keys) {
   props[key] = searchParams[key] ?? props[key];
 }
 
 const opened = props.opened === "true";
 
-const openedStyle = {
-  display: opened ? undefined : "none",
-};
+const fabStyle: Record<string, any> = {};
+
+if (opened === false) {
+  fabStyle.transform = "translate(150%)";
+  fabStyle.opacity = 0;
+}
+
+const get = `/htmx/bar-fab.html?opened=${!opened}`;
+
+const trigger = `${opened ? "mouseleave" : "mouseenter"} once`;
 ---
 
 <div
   id="htmx-bar-fab"
   class="tw-absolute tw-right-[34px] tw-bottom-[27px] tw-flex tw-flex-row-reverse tw-items-center tw-justify-end tw-gap-[26px] tw-duration-300 tw-overflow-x-hidden"
-  hx-get={`/htmx/bar-fab.html?opened=${!opened}`}
+  hx-get={get}
   hx-swap="outerHTML swap:300ms"
-  hx-trigger={`${opened ? `mouseleave` : `mouseenter`} once`}
-  hx-target="#htmx-bar-fab"
+  hx-trigger={trigger}
 >
   <style is:inline>
-    #htmx-bar-fab.htmx-swapping > *:not(#htmx-bar-fab-action) {
+    #htmx-bar-fab.htmx-swapping > *:not(#htmx-fab-action) {
       transform: translate(150%);
       opacity: 0;
     }
 
-    #htmx-bar-fab.htmx-added > *:not(#htmx-bar-fab-action) {
+    #htmx-bar-fab.htmx-added > *:not(#htmx-fab-action) {
       transform: translate(150%);
       opacity: 0;
     }
 
-    #htmx-bar-fab > *:not(#htmx-bar-fab-action) {
+    #htmx-bar-fab > *:not(#htmx-fab-action) {
       transform: translate(0%);
       opacity: 1;
       transition: all 300ms ease;
     }
   </style>
-  <ActionFAB id="htmx-bar-fab-action" />
-  <InboxFAB style={openedStyle} />
-  <TaskFAB style={openedStyle} />
+  <ActionFAB />
+  <InboxFAB style={fabStyle} />
+  <TaskFAB style={fabStyle} />
 </div>
