@@ -1,4 +1,6 @@
 ---
+import "../styles/main.css";
+
 import { ViewTransitions } from "astro:transitions";
 
 interface Props {
@@ -20,21 +22,19 @@ const { title } = Astro.props;
   </head>
   <body>
     <script>
-      import "../styles/main.css";
       import htmx from "htmx.org";
 
       /// Clean up leftover htmx-settlings
       htmx.on("htmx:afterSettle", function () {
         const settlings = [...document.getElementsByClassName("htmx-settling")];
 
-        console.log(settlings);
-
-        settlings.forEach(function (settling) {
-          htmx.remove(settling);
-        });
+        for (const settling of settlings) {
+          try {
+            htmx.remove(settling);
+          } catch (e) {}
+        }
       });
     </script>
-
     <div
       class="tw-font-lato tw-relative tw-overflow-auto tw-bg-[#333333] tw-min-h-screen tw-min-w-full"
     >
