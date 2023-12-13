@@ -3,6 +3,7 @@ import { useSearchParams } from "../../utils/searchParams";
 import ActionFAB from "./fab-action.html.astro";
 import InboxFAB from "./fab-inbox.html.astro";
 import TaskFAB from "./fab-task.html.astro";
+import Controller from "./bar-fab-controller.html.astro";
 
 const { props, url } = Astro;
 
@@ -16,32 +17,47 @@ for (const key of keys) {
 
 const expanded = props.expanded === "true";
 
-const fabStyle: Record<string, string | number | null | undefined> = {};
+const selected_id = expanded ? props.selected_id : undefined;
+
+const style: Record<string, string | number | null | undefined> = {};
 
 if (expanded === false) {
-  fabStyle.transform = "translate(150%)";
-  fabStyle.opacity = 0;
-  fabStyle["z-index"] = -50;
-  fabStyle.position = "absolute";
+  style.transform = "translate(150%)";
+  style.opacity = 0;
+  style["z-index"] = -50;
+  style.position = "absolute";
 }
 
-const htmxURLParams = new URLSearchParams();
+const endpointParams = new URLSearchParams();
 
-htmxURLParams.set("expanded", `${!expanded}`);
+for (const key of keys) {
+  endpointParams.set(key, props[key]);
+}
 
-const htmxURL = `/htmx/bar-fab.html?${htmxURLParams.toString()}`;
+if (!expanded) {
+  endpointParams.delete("selected_id");
+}
 
-const htmxTrigger = `${expanded ? "mouseleave" : "mouseenter"} once`;
+endpointParams.set("expanded", `${!expanded}`);
+
+const endpoint = !!selected_id
+  ? undefined
+  : `/htmx/bar-fab.html?${endpointParams.toString()}`;
+
+const trigger = !!selected_id
+  ? undefined
+  : `${expanded ? "mouseleave" : "mouseenter"} once`;
 ---
 
 <div
   {...props}
   id="htmx-bar-fab"
   class="tw-absolute tw-right-[34px] tw-bottom-[27px] tw-flex tw-flex-row-reverse tw-items-center tw-justify-end tw-gap-[26px] tw-duration-300 tw-overflow-x-hidden"
-  hx-get={htmxURL}
+  hx-get={endpoint}
   hx-swap="outerHTML swap:300ms"
-  hx-trigger={htmxTrigger}
+  hx-trigger={trigger}
 >
+  {!selected_id && <Controller />}
   <style is:inline>
     #htmx-bar-fab.htmx-swapping > *:not(#htmx-fab-action) {
       transform: translate(150%);
@@ -59,7 +75,7 @@ const htmxTrigger = `${expanded ? "mouseleave" : "mouseenter"} once`;
       transition: all 300ms ease;
     }
   </style>
-  <ActionFAB expanded={expanded} />
-  <InboxFAB expanded={expanded} style={fabStyle} />
-  <TaskFAB expanded={expanded} style={fabStyle} />
+  <ActionFAB {...{ expanded }} />
+  <InboxFAB {...{ expanded, selected_id, style }} />
+  <TaskFAB {...{ expanded, selected_id, style }} />
 </div>

@@ -5,14 +5,14 @@ const { props } = Astro;
 
 const expanded = props.expanded === "true";
 
-const htmxURL = `/htmx/bar-fab.html?expanded=${!expanded}`;
+const endpoint = `/htmx/bar-fab.html?expanded=${!expanded}`;
 ---
 
 <div
   {...props}
   id="htmx-fab-action"
   class="tw-h-[110px] tw-flex tw-flex-col tw-justify-end tw-w-[68px] tw-z-10"
-  hx-get={htmxURL}
+  hx-get={endpoint}
   hx-swap="outerHTML swap:300ms"
   hx-trigger="click once"
   hx-target="#htmx-bar-fab"

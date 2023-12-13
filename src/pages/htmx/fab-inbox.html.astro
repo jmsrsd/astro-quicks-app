@@ -5,22 +5,38 @@ const id = "htmx-fab-inbox";
 
 const { props } = Astro;
 
-const selected = props.selected === "true";
+const selected_id = props.selected_id;
 
-const htmxChatParams = new URLSearchParams();
+const chatEndpointParams = new URLSearchParams();
 
-htmxChatParams.set("shown", "true");
+chatEndpointParams.set("shown", "true");
+chatEndpointParams.set("selected_id", id);
 
-const htmxChatURL = selected
+const selected = selected_id === id;
+
+const chatEndpoint = selected
   ? undefined
-  : `/htmx/card-chat.html?${htmxChatParams.toString()}`;
+  : `/htmx/card-chat.html?${chatEndpointParams.toString()}`;
+
+const style: Record<string, string | number | null | undefined> = selected
+  ? {}
+  : props.style;
+
+if (selected === false && !!selected_id) {
+  style.transform = "translate(150%)";
+  style.opacity = 0;
+  style["z-index"] = -50;
+  style.position = "absolute";
+}
+
+props.style = style;
 ---
 
 <div
   {...props}
   id={id}
   class="tw-gap-[14px] tw-items-center tw-h-[110px] tw-flex tw-flex-col tw-justify-end tw-w-[68px]"
-  hx-get={htmxChatURL}
+  hx-get={chatEndpoint}
   hx-swap="outerHTML swap:300ms"
   hx-target="#htmx-card-chat"
   hx-trigger="click"

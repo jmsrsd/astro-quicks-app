@@ -1,0 +1,13 @@
+---
+const id = "htmx-bar-fab-controller";
+---
+
+<div
+  id={id}
+  hx-get="/htmx/card-chat.html?shown=false"
+  hx-swap="outerHTML swap:300ms"
+  hx-target="#htmx-card-chat"
+  hx-trigger="intersect once"
+  style={{ position: "absolute", opacity: 0, "z-index": -50 }}
+>
+</div>

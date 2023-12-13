@@ -1,7 +1,8 @@
 ---
-import { useSearchParams } from "../../utils/searchParams";
-
+import Controller from "./card-chat-controller.html.astro";
 import SearchField from "./field-search.html.astro";
+
+import { useSearchParams } from "../../utils/searchParams";
 
 const { props, url } = Astro;
 
@@ -13,7 +14,9 @@ for (const key of keys) {
   props[key] = params[key] ?? props[key];
 }
 
-const shown = props.shown === "true";
+const selected_id = props.selected_id;
+
+const shown = !selected_id ? false : props.shown === "true";
 
 const style: Record<string, string | number | null | undefined> = {};
 
@@ -31,6 +34,7 @@ if (shown === false) {
   class="tw-absolute tw-right-[34px] tw-bottom-[110px] tw-flex tw-flex-row-reverse tw-items-center tw-justify-end tw-gap-[26px]"
   style={style}
 >
+  {shown && <Controller {...{ selected_id }} />}
   <style is:inline>
     #htmx-card-chat.htmx-swapping {
       transform: translate(150%);
