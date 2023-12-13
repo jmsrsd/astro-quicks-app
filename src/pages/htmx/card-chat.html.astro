@@ -1,10 +1,53 @@
 ---
+import { useSearchParams } from "../../utils/searchParams";
+
 import SearchField from "./field-search.html.astro";
+
+const { props, url } = Astro;
+
+const [params] = useSearchParams({ url });
+
+const keys = [...Object.keys(props), ...Object.keys(params)];
+
+for (const key of keys) {
+  props[key] = params[key] ?? props[key];
+}
+
+const shown = props.shown === "true";
+
+const style: Record<string, string | number | null | undefined> = {};
+
+if (shown === false) {
+  style.transform = "translate(150%)";
+  style.opacity = 0;
+  style["z-index"] = -50;
+  style.position = "absolute";
+}
 ---
 
 <div
+  {...props}
+  id="htmx-card-chat"
   class="tw-absolute tw-right-[34px] tw-bottom-[110px] tw-flex tw-flex-row-reverse tw-items-center tw-justify-end tw-gap-[26px]"
+  style={style}
 >
+  <style is:inline>
+    #htmx-card-chat.htmx-swapping {
+      transform: translate(150%);
+      opacity: 0;
+    }
+
+    #htmx-card-chat.htmx-added {
+      transform: translate(150%);
+      opacity: 0;
+    }
+
+    #htmx-card-chat {
+      transform: translate(0%);
+      opacity: 1;
+      transition: all 300ms ease;
+    }
+  </style>
   <div
     class="tw-h-[737px] tw-w-[734px] tw-rounded-md tw-border tw-border-[#bdbdbd] tw-bg-white tw-flex tw-flex-col tw-items-center tw-justify-start"
   >

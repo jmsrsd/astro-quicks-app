@@ -2,12 +2,20 @@
 import actionIcon from "../../icons/action-icon.svg?raw";
 
 const { props } = Astro;
+
+const expanded = props.expanded === "true";
+
+const htmxURL = `/htmx/bar-fab.html?expanded=${!expanded}`;
 ---
 
 <div
   {...props}
   id="htmx-fab-action"
   class="tw-h-[110px] tw-flex tw-flex-col tw-justify-end tw-w-[68px] tw-z-10"
+  hx-get={htmxURL}
+  hx-swap="outerHTML swap:300ms"
+  hx-trigger="click once"
+  hx-target="#htmx-bar-fab"
 >
   <div
     class="tw-gap-[14px] tw-flex tw-flex-col tw-items-center tw-justify-center tw-rounded-full tw-bg-[#4f62f0] tw-min-h-[68px] tw-min-w-[68px]"

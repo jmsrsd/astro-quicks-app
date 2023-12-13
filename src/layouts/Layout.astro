@@ -21,10 +21,24 @@ const { title } = Astro.props;
     <ViewTransitions />
   </head>
   <body>
+    <style is:inline>
+      * {
+        min-width: 0;
+      }
+
+      body {
+        z-index: 0;
+      }
+    </style>
     <script>
       import htmx from "htmx.org";
 
+      /// Inject htmx into document
+      ///
+      (document as any).htmx = htmx;
+
       /// Clean up leftover htmx-settlings
+      ///
       htmx.on("htmx:afterSettle", function () {
         const settlings = [...document.getElementsByClassName("htmx-settling")];
 
@@ -33,6 +47,8 @@ const { title } = Astro.props;
             htmx.remove(settling);
           } catch (e) {}
         }
+
+        htmx.process(document.body);
       });
     </script>
     <div

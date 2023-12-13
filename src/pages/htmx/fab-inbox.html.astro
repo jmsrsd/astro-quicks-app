@@ -1,13 +1,29 @@
 ---
 import inboxIcon from "../../icons/inbox-icon.svg?raw";
 
-const props = Astro.props;
+const id = "htmx-fab-inbox";
+
+const { props } = Astro;
+
+const selected = props.selected === "true";
+
+const htmxChatParams = new URLSearchParams();
+
+htmxChatParams.set("shown", "true");
+
+const htmxChatURL = selected
+  ? undefined
+  : `/htmx/card-chat.html?${htmxChatParams.toString()}`;
 ---
 
 <div
   {...props}
-  id="htmx-fab-inbox"
+  id={id}
   class="tw-gap-[14px] tw-items-center tw-h-[110px] tw-flex tw-flex-col tw-justify-end tw-w-[68px]"
+  hx-get={htmxChatURL}
+  hx-swap="outerHTML swap:300ms"
+  hx-target="#htmx-card-chat"
+  hx-trigger="click"
 >
   <div class="tw-font-bold tw-text-sm tw-text-[#f2f2f2]">{`Inbox`}</div>
   <div
