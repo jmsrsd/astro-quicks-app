@@ -1,13 +1,14 @@
 ---
 import arrowBackIcon from "../../../assets/arrow-back-icon.svg?raw";
 import closeIcon from "../../../assets/close-icon.svg?raw";
+import Bubble from "./bubble.astro";
 
 const id = "htmx-chat-detail";
 ---
 
 <div
   id={id}
-  class="tw-flex tw-flex-col tw-items-start tw-justify-start tw-w-full tw-h-full tw-divide-y tw-divide-[#BDBDBD]"
+  class="tw-flex tw-flex-col tw-items-start tw-justify-start tw-w-full tw-h-full"
 >
   <style is:inline>
     #htmx-chat-detail.htmx-swapping {
@@ -29,14 +30,14 @@ const id = "htmx-chat-detail";
   <div
     class="tw-flex tw-flex-none tw-flex-row tw-bg-white tw-h-[74px] tw-w-full"
   >
-    <div
+    <button
       class="tw-flex tw-flex-none tw-flex-col tw-items-center tw-justify-center tw-w-[74px] tw-h-[74px]"
       hx-get="/htmx/chat.html/inbox"
       hx-target="#htmx-card-chat-body"
       hx-swap="innerHTML swap:300ms"
     >
       <Fragment set:html={arrowBackIcon} />
-    </div>
+    </button>
     <div
       class="tw-w-full tw-h-full tw-flex tw-flex-col tw-items-start tw-justify-center tw-overflow-hidden"
     >
@@ -49,15 +50,37 @@ const id = "htmx-chat-detail";
         {`3 Participants`}
       </p>
     </div>
-
-    <div
+    <button
       class="tw-flex tw-flex-none tw-flex-col tw-items-center tw-justify-center tw-w-[74px] tw-h-[74px]"
       hx-get="/htmx/chat.html/inbox"
       hx-target="#htmx-card-chat-body"
       hx-swap="innerHTML swap:300ms"
     >
       <Fragment set:html={closeIcon} />
+    </button>
+  </div>
+  <div class="tw-w-full tw-h-[1px] tw-bg-[#BDBDBD] tw-flex tw-flex-none"></div>
+  <div
+    class="tw-w-full tw-h-full tw-relative tw-overflow-x-hidden tw-overflow-y-scroll"
+  >
+    <div class="tw-w-full tw-flex tw-flex-col tw-p-8 tw-gap-4 tw-absolute">
+      <Bubble />
+      <Bubble />
+      <Bubble />
+      <Bubble />
+      <Bubble />
+      <Bubble />
     </div>
   </div>
-  <div class="tw-w-full tw-h-full"></div>
+  <div class="tw-flex tw-flex-row tw-gap-2 tw-w-full tw-px-[20px]">
+    <input
+      class="tw-w-full tw-border-[#bdbdbd] tw-border tw-rounded-md tw-px-4 tw-py-3 tw-placeholder-[#333333] tw-text-[#333333]"
+      placeholder="Type a new message"
+    />
+    <button
+      class="tw-flex tw-flex-none tw-rounded-md tw-bg-blue-500 tw-px-4 tw-py-3 tw-text-white tw-font-bold"
+      >{`Send`}</button
+    >
+  </div>
+  <div class="tw-pb-[20px]"></div>
 </div>

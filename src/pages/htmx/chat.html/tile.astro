@@ -3,7 +3,7 @@ import personIcon from "../../../assets/person-icon.svg?raw";
 import personIconWhite from "../../../assets/person-icon-white.svg?raw";
 ---
 
-<div
+<button
   class="tw-h-32 tw-w-full tw-pt-6 tw-pb-8 tw-flex tw-flex-row tw-items-start tw-justify-start tw-gap-4"
   hx-get="/htmx/chat.html/detail"
   hx-target="#htmx-card-chat-body"
@@ -38,7 +38,9 @@ import personIconWhite from "../../../assets/person-icon-white.svg?raw";
       <Fragment set:html={personIconWhite} />
     </div>
   </div>
-  <div class="tw-flex tw-flex-col tw-h-full tw-overflow-y-hidden tw-w-full">
+  <div
+    class="tw-flex tw-flex-col tw-items-start tw-h-full tw-overflow-y-hidden tw-w-full"
+  >
     <div class="tw-flex tw-flex-row tw-gap-4 tw-overflow-hidden">
       <p class="tw-truncate tw-text-[#2F80ED] tw-font-bold">
         {`109220-Naturalization`}
@@ -59,4 +61,4 @@ import personIconWhite from "../../../assets/person-icon-white.svg?raw";
   >
     <div class="tw-bg-[#EB5757] tw-rounded-full tw-w-[10px] tw-h-[10px]"></div>
   </div>
-</div>
+</button>
