@@ -45,7 +45,9 @@ const { title } = Astro.props;
         for (const settling of settlings) {
           try {
             htmx.remove(settling);
-          } catch (e) {}
+          } catch (e) {
+            /// Noop
+          }
         }
 
         htmx.process(document.body);

@@ -1,8 +1,10 @@
 ---
-import Controller from "./card-chat-controller.html.astro";
-import SearchField from "./field-search.html.astro";
+import Controller from "./controller.astro";
+import SearchField from "../field-search.html.astro";
+import LoadingIndicator from "../chat.html/loading-indicator.astro";
+import ChatCollectionLoader from "../chat.html/collection-loader.astro";
 
-import { useSearchParams } from "../../utils/searchParams";
+import { useSearchParams } from "../../../utils/searchParams";
 
 const { props, url } = Astro;
 
@@ -58,12 +60,6 @@ if (shown === false) {
     <div class="tw-flex tw-pt-[20px] tw-px-[34px] tw-w-full">
       <SearchField />
     </div>
-    <div
-      class="tw-h-full tw-flex tw-flex-col tw-items-center tw-justify-center"
-    >
-      <div class="tw-text-base tw-font-semibold tw-text-[#4f4f4f]">
-        {`Loading Chats ...`}
-      </div>
-    </div>
+    <ChatCollectionLoader />
   </div>
 </div>

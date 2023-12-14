@@ -1,8 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import SearchBar from "./htmx/bar-search.html.astro";
-import ChatCard from "./htmx/card-chat.html.astro";
-import FABBar from "./htmx/bar-fab.html.astro";
+import BarSearch from "./htmx/bar-search.html.astro";
+import CardChat from "./htmx/card-chat.html/index.astro";
+import BarFab from "./htmx/bar-fab.html/index.astro";
 ---
 
 <Layout>
@@ -15,9 +15,9 @@ import FABBar from "./htmx/bar-fab.html.astro";
     <div
       class="tw-h-full tw-flex tw-w-full tw-flex-col tw-items-start tw-justify-start"
     >
-      <SearchBar />
+      <BarSearch />
     </div>
-    <ChatCard />
-    <FABBar />
+    <CardChat />
+    <BarFab />
   </div>
 </Layout>

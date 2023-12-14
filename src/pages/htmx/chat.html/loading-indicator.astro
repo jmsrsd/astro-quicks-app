@@ -1,0 +1,17 @@
+---
+import loadingIndicator from "../../../assets/loading-indicator.svg?raw";
+
+const id = "htmx-chat-loading-indicator";
+---
+
+<div
+  id={id}
+  class="tw-h-full tw-flex tw-flex-col tw-items-center tw-justify-center tw-gap-6"
+>
+  <div class="tw-animate-spin">
+    <Fragment set:html={loadingIndicator} />
+  </div>
+  <div class="tw-text-base tw-font-semibold tw-text-[#4f4f4f]">
+    {`Loading Chats ...`}
+  </div>
+</div>

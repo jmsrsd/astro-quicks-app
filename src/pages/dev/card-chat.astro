@@ -1,0 +1,12 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout>
+  <div
+    hx-get="/htmx/card-chat.html?shown=true&selected_id=htmx-card-chat"
+    hx-trigger="intersect once"
+    hx-swap="outerHTML swap:300ms"
+  >
+  </div>
+</Layout>
