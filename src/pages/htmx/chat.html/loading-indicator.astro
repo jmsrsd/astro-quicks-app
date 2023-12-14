@@ -6,9 +6,15 @@ const id = "htmx-chat-loading-indicator";
 
 <div
   id={id}
-  class="tw-h-full tw-flex tw-flex-col tw-items-center tw-justify-center tw-gap-6"
+  class="tw-h-full tw-w-full tw-flex tw-flex-col tw-items-center tw-justify-center tw-gap-6"
 >
-  <div class="tw-animate-spin">
+  <div
+    class="tw-animate-spin tw-w-[62px] tw-h-[62px]"
+    style={{
+      "transform-origin": "50% 50%",
+      transform: "initial",
+    }}
+  >
     <Fragment set:html={loadingIndicator} />
   </div>
   <div class="tw-text-base tw-font-semibold tw-text-[#4f4f4f]">

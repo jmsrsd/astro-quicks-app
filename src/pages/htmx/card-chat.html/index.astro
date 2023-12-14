@@ -1,8 +1,6 @@
 ---
 import Controller from "./controller.astro";
-import SearchField from "../field-search.html.astro";
-import LoadingIndicator from "../chat.html/loading-indicator.astro";
-import ChatCollectionLoader from "../chat.html/collection-loader.astro";
+import ChatInbox from "../chat.html/inbox.astro";
 
 import { useSearchParams } from "../../../utils/searchParams";
 
@@ -33,10 +31,11 @@ if (shown === false) {
 <div
   {...props}
   id="htmx-card-chat"
-  class="tw-absolute tw-right-[34px] tw-bottom-[110px] tw-flex tw-flex-row-reverse tw-items-center tw-justify-end tw-gap-[26px]"
+  class="tw-absolute tw-right-[34px] tw-bottom-[110px] tw-flex tw-flex-row-reverse tw-items-center tw-justify-end tw-gap-[26px] tw-min-h-[737px] tw-min-w-[734px] tw-max-h-[737px] tw-max-w-[734px] tw-h-[737px] tw-w-[734px] tw-rounded-md tw-border tw-border-[#bdbdbd] tw-bg-white tw-overflow-hidden"
   style={style}
 >
   {shown && <Controller {...{ selected_id }} />}
+
   <style is:inline>
     #htmx-card-chat.htmx-swapping {
       transform: translate(150%);
@@ -54,12 +53,26 @@ if (shown === false) {
       transition: all 300ms ease;
     }
   </style>
-  <div
-    class="tw-h-[737px] tw-w-[734px] tw-rounded-md tw-border tw-border-[#bdbdbd] tw-bg-white tw-flex tw-flex-col tw-items-center tw-justify-start"
-  >
-    <div class="tw-flex tw-pt-[20px] tw-px-[34px] tw-w-full">
-      <SearchField />
-    </div>
-    <ChatCollectionLoader />
+
+  <style is:inline>
+    #htmx-card-chat-body.htmx-swapping * {
+      transform: translate(150%);
+      opacity: 0;
+    }
+
+    #htmx-card-chat-body.htmx-added * {
+      transform: translate(150%);
+      opacity: 0;
+    }
+
+    #htmx-card-chat-body * {
+      transform: translate(0%);
+      opacity: 1;
+      transition: all 300ms ease;
+    }
+  </style>
+
+  <div id="htmx-card-chat-body" class="tw-w-full tw-h-full">
+    <ChatInbox />
   </div>
 </div>

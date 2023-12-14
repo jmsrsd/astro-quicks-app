@@ -1,0 +1,16 @@
+---
+import SearchField from "../field-search.html.astro";
+import ChatCollectionLoader from "../chat.html/collection-loader.astro";
+
+const id = "htmx-inbox";
+---
+
+<div
+  id={id}
+  class="tw-h-full tw-w-full tw-flex tw-flex-col tw-items-center tw-justify-start"
+>
+  <div class="tw-flex tw-py-[20px] tw-px-[34px] tw-w-full">
+    <SearchField />
+  </div>
+  <ChatCollectionLoader />
+</div>

@@ -1,0 +1,62 @@
+---
+import personIcon from "../../../assets/person-icon.svg?raw";
+import personIconWhite from "../../../assets/person-icon-white.svg?raw";
+---
+
+<div
+  class="tw-h-32 tw-w-full tw-pt-6 tw-pb-8 tw-flex tw-flex-row tw-items-start tw-justify-start tw-gap-4"
+  hx-get="/htmx/chat.html/detail"
+  hx-target="#htmx-card-chat-body"
+  hx-trigger="click"
+  hx-swap="innerHTML swap:300ms"
+>
+  <div
+    class="tw-flex tw-flex-col tw-items-end tw-justify-start tw-h-full tw-flex-none tw-relative tw-w-[68px]"
+  >
+    <div
+      class="tw-bg-[#e0e0e0] tw-rounded-full tw-w-[34px] tw-h-[34px] tw-flex tw-flex-col tw-items-center tw-justify-center tw-overflow-hidden"
+      style={{
+        top: "0%",
+        left: "50%",
+        transform: "translate(-75%, 0%)",
+        position: "absolute",
+        "z-index": 10,
+      }}
+    >
+      <Fragment set:html={personIcon} />
+    </div>
+    <div
+      class="tw-bg-[#4f62f0] tw-rounded-full tw-w-[34px] tw-h-[34px] tw-flex tw-flex-col tw-items-center tw-justify-center tw-overflow-hidden"
+      style={{
+        top: "0%",
+        left: "50%",
+        transform: "translate(-25%, 0%)",
+        position: "absolute",
+        "z-index": 20,
+      }}
+    >
+      <Fragment set:html={personIconWhite} />
+    </div>
+  </div>
+  <div class="tw-flex tw-flex-col tw-h-full tw-overflow-y-hidden tw-w-full">
+    <div class="tw-flex tw-flex-row tw-gap-4 tw-overflow-hidden">
+      <p class="tw-truncate tw-text-[#2F80ED] tw-font-bold">
+        {`109220-Naturalization`}
+      </p>
+      <p class="tw-flex tw-flex-none tw-text-[#4F4F4F]">
+        {`January 1,2021 19:10`}
+      </p>
+    </div>
+    <p class="tw-truncate tw-font-bold tw-text-[#4f4f4f]">
+      {`Cameron Phillips :`}
+    </p>
+    <p class="tw-truncate tw-text-sm tw-text-[#4f4f4f]">
+      {`Please check this out!`}
+    </p>
+  </div>
+  <div
+    class="tw-flex tw-flex-col tw-items-center tw-justify-center tw-h-full tw-flex-none tw-pl-8"
+  >
+    <div class="tw-bg-[#EB5757] tw-rounded-full tw-w-[10px] tw-h-[10px]"></div>
+  </div>
+</div>

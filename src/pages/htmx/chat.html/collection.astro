@@ -1,15 +1,31 @@
 ---
-await new Promise((resolve) => setTimeout(resolve, 2000));
+import Tile from "./tile.astro";
+
+await new Promise((resolve) => setTimeout(resolve, 1000));
 
 const id = "htmx-chat-collection";
 ---
 
 <div
   id={id}
-  class="tw-h-full tw-flex tw-flex-col tw-items-center tw-justify-center tw-gap-6"
+  class="tw-h-full tw-w-full tw-relative tw-overflow-x-hidden tw-overflow-y-auto"
 >
-  <div>{`Tile 1`}</div>
-  <div>{`Tile 2`}</div>
-  <div>{`Tile 3`}</div>
-  <div>{`Tile 4`}</div>
+  <style is:inline>
+    #htmx-chat-collection.htmx-added {
+      transform: translate(150%);
+    }
+
+    #htmx-chat-collection {
+      transform: translate(0%);
+      transition: all 300ms ease;
+    }
+  </style>
+  <div
+    class="tw-absolute tw-flex tw-flex-col tw-items-start tw-justify-start tw-divide-y tw-divide-[#828282] tw-px-[34px] tw-w-full"
+  >
+    <Tile />
+    <Tile />
+    <Tile />
+    <Tile />
+  </div>
 </div>
