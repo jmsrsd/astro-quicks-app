@@ -58,6 +58,18 @@ const trigger = !!selected_id
   hx-trigger={trigger}
 >
   {!selected_id && <Controller />}
+
+  <script define:vars={{ selected_id }}>
+    const self = document.getElementById("htmx-bar-fab");
+
+    const child = document.getElementById(`${selected_id}`);
+
+    if (!!child) {
+      self.removeChild(child);
+      self.insertBefore(child, self.firstChild);
+    }
+  </script>
+
   <style is:inline>
     #htmx-bar-fab.htmx-swapping > *:not(#htmx-fab-action) {
       transform: translate(150%);
@@ -75,7 +87,8 @@ const trigger = !!selected_id
       transition: all 300ms ease;
     }
   </style>
-  <ActionFAB {...{ expanded }} />
+
+  <ActionFAB {...{ expanded, selected_id }} />
   <InboxFAB {...{ expanded, selected_id, style }} />
   <TaskFAB {...{ expanded, selected_id, style }} />
 </div>

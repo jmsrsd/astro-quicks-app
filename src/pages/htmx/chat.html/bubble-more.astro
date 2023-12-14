@@ -33,31 +33,31 @@ onClickParams.set("shown", `${!shown}`);
 >
   <style is:inline>
     .htmx-chat-bubble-more.htmx-swapping > * {
-      transform: scale(0%)
+      transform: scale(0%);
       opacity: 0;
     }
 
     .htmx-chat-bubble-more.htmx-added > * {
-      transform: scale(0%)
+      transform: scale(0%);
       opacity: 0;
     }
 
     .htmx-chat-bubble-more > * {
-      transform: scale(100%)
+      transform: scale(100%);
       opacity: 1;
       transition: all 300ms ease;
     }
   </style>
   <button
     class="tw-font-bold"
-    hx-get=`/htmx/chat.html/bubble-more?${onClickParams.toString()}`
+    hx-get={`/htmx/chat.html/bubble-more?${onClickParams.toString()}`}
     hx-swap="outerHTML swap:300ms"
     hx-trigger="click"
     hx-target={`#htmx-chat-bubble-more-${key}`}>{`. . .`}</button
   >
   <div
     id={`htmx-chat-bubble-more-dialog-${key}`}
-    class="tw-absolute tw-flex-col tw-items-start tw-justify-start tw-rounded-md tw-border tw-border-[#bdbdbd] tw-divide-y tw-divide-[#bdbddb] tw-bg-white tw-py-2 tw-gap-2"
+    class="tw-absolute tw-flex-col tw-items-start tw-justify-start tw-rounded-md tw-border tw-border-[#bdbdbd] tw-divide-y tw-divide-[#bdbddb] tw-bg-white tw-gap-2"
     style={{
       right: align === "right" ? "0%" : undefined,
       left: align === "right" ? undefined : "0%",
@@ -67,7 +67,19 @@ onClickParams.set("shown", `${!shown}`);
       transform: shown ? undefined : "scale(0%)",
     }}
   >
-    <button class="tw-w-32 tw-px-2 tw-inline tw-text-left tw-py-2">{`Edit`}</button>
-    <button class="tw-w-32 tw-px-2 tw-inline tw-text-left tw-py-2">{`Delete`}</button>
+    <button
+      class="tw-w-32 tw-px-2 tw-inline tw-text-left tw-py-2 tw-text-[#2F80ED]"
+      hx-get={`/htmx/chat.html/bubble-more?${onClickParams.toString()}`}
+      hx-swap="outerHTML swap:300ms"
+      hx-trigger="click"
+      hx-target={`#htmx-chat-bubble-more-${key}`}>{`Edit`}</button
+    >
+    <button
+      class="tw-w-32 tw-px-2 tw-inline tw-text-left tw-py-2 tw-text-[#EB5757]"
+      hx-get={`/htmx/chat.html/bubble-more?${onClickParams.toString()}`}
+      hx-swap="outerHTML swap:300ms"
+      hx-trigger="click"
+      hx-target={`#htmx-chat-bubble-more-${key}`}>{`Delete`}</button
+    >
   </div>
 </div>

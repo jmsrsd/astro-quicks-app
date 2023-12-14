@@ -26,6 +26,7 @@ const key = props.key;
       class="tw-truncate tw-w-full"
       style={{
         "text-align": rightAligned ? "right" : undefined,
+        color: rightAligned ? "#ad00e2" : "#e6a938",
       }}
     >
       {`Mary Hilda`}
@@ -33,7 +34,10 @@ const key = props.key;
     <div class="tw-flex tw-flex-row tw-items-start tw-gap-2">
       {rightAligned && <More align={align} key={key} />}
       <div
-        class="tw-rounded-lg tw-bg-slate-200 tw-flex tw-flex-col tw-p-2 tw-gap-2"
+        class="tw-rounded-lg tw-flex tw-flex-col tw-p-2 tw-gap-2"
+        style={{
+          "background-color": rightAligned ? "#f3d4ff" : "#fbf1d2",
+        }}
       >
         <p>
           {

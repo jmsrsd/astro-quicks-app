@@ -61,8 +61,42 @@ const id = "htmx-chat-detail";
   </div>
   <div class="tw-w-full tw-h-[1px] tw-bg-[#BDBDBD] tw-flex tw-flex-none"></div>
   <div
+    id="htmx-chat-detail-view"
     class="tw-w-full tw-h-full tw-relative tw-overflow-x-hidden tw-overflow-y-scroll"
   >
+    <script is:inline>
+      const view = document.getElementById("htmx-chat-detail-view");
+
+      const scrollHeight = Math.abs(view.scrollHeight - view.clientHeight);
+
+      view.scrollTop = scrollHeight;
+
+      const button = document.getElementById(
+        "htmx-chat-detail-new-message-button",
+      );
+
+      button.addEventListener("click", function () {
+        view.setAttribute("style", "scroll-behavior:smooth");
+
+        view.scrollTo(0, scrollHeight);
+      });
+
+      view.addEventListener("scroll", function () {
+        if (view.scrollTop === scrollHeight) {
+          button.setAttribute(
+            "style",
+            "transition:all 300ms ease;opacity:0;transform:scale(0%)",
+          );
+
+          return;
+        }
+
+        button.setAttribute(
+          "style",
+          "transition:all 300ms ease;opacity:1;transform:scale(100%)",
+        );
+      });
+    </script>
     <div class="tw-w-full tw-flex tw-flex-col tw-p-8 tw-gap-4 tw-absolute">
       <Bubble key={0} />
       <Bubble key={1} align="right" />
@@ -71,6 +105,15 @@ const id = "htmx-chat-detail";
       <Bubble key={4} />
       <Bubble key={5} align="right" />
     </div>
+  </div>
+  <div
+    id="htmx-chat-detail-new-message-button"
+    class="tw-absolute tw-bottom-24 tw-w-full tw-z-10 tw-flex tw-flex-row tw-items-center tw-justify-center"
+  >
+    <button
+      class="tw-rounded-md tw-bg-[#dbdbdc] tw-px-4 tw-py-2 tw-font-bold tw-text-[#2F80ED]"
+      >{`New Message`}</button
+    >
   </div>
   <div class="tw-flex tw-flex-row tw-gap-2 tw-w-full tw-px-[20px]">
     <input
