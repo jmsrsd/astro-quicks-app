@@ -49,7 +49,7 @@ onClickParams.set("shown", `${!shown}`);
     }
   </style>
   <button
-    tw="tw-font-bold"
+    class="tw-font-bold"
     hx-get=`/htmx/chat.html/bubble-more?${onClickParams.toString()}`
     hx-swap="outerHTML swap:300ms"
     hx-trigger="click"
