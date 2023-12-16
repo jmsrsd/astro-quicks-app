@@ -1,0 +1,21 @@
+---
+import DialogActionButton from "./get-dialog-action-button.astro";
+import InboxActionButton from "../inbox/get-inbox-action-button.astro";
+
+const { url } = Astro;
+
+const { props } = Astro;
+
+for (const key of [...url.searchParams.keys()]) {
+  props[key] = url.searchParams.get(key) ?? props[key];
+}
+---
+
+<div
+  {...props}
+  id="htmx-dialog-action-button-container"
+  class="tw-flex tw-flex-row-reverse tw-justify-end tw-items-end tw-gap-3"
+>
+  <DialogActionButton opened />
+  <InboxActionButton />
+</div>

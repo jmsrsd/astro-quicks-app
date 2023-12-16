@@ -1,0 +1,29 @@
+---
+import inboxIcon from "../../../../assets/inbox-icon.svg?raw";
+
+const { url } = Astro;
+
+const { props } = Astro;
+
+for (const key of [...url.searchParams.keys()]) {
+  props[key] = url.searchParams.get(key) ?? props[key];
+}
+---
+
+<button
+  {...props}
+  class="tw-z-10 tw-gap-4 tw-items-center tw-flex tw-flex-col tw-justify-end tw-w-16"
+>
+  <div
+    class="tw-absolute tw-w-[68px] tw-h-[68px] tw-bottom-0 tw-rounded-full tw-bg-[#4f4f4f] -tw-z-10"
+  >
+  </div>
+  <div class="tw-font-bold tw-text-sm tw-text-[#f2f2f2]">
+    {`Inbox`}
+  </div>
+  <div
+    class="tw-flex tw-flex-col tw-items-center tw-justify-center tw-rounded-full tw-bg-[#f2f2f2] tw-min-h-[4rem] tw-min-w-[4rem]"
+  >
+    <Fragment set:html={inboxIcon} />
+  </div>
+</button>

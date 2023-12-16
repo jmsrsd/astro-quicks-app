@@ -1,10 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import BarSearch from "./htmx/bar-search.html.astro";
-import CardChat from "./htmx/card-chat.html/index.astro";
-import BarFab from "./htmx/bar-fab.html/index.astro";
-
-return Astro.redirect("/main");
+import SearchBar from "./api/htmx/search/get-search-bar.astro";
+import DialogActionButton from "./api/htmx/dialog/get-dialog-action-button.astro";
 ---
 
 <Layout>
@@ -17,9 +14,12 @@ return Astro.redirect("/main");
     <div
       class="tw-h-full tw-flex tw-w-full tw-flex-col tw-items-start tw-justify-start"
     >
-      <BarSearch />
+      <SearchBar />
+      <div class="tw-h-full tw-w-full tw-flex-col">
+        <div class="tw-absolute tw-right-8 tw-bottom-8">
+          <DialogActionButton />
+        </div>
+      </div>
     </div>
-    <CardChat />
-    <BarFab />
   </div>
 </Layout>

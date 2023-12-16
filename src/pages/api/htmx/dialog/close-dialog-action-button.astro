@@ -1,0 +1,13 @@
+---
+import DialogActionButton from "./get-dialog-action-button.astro";
+
+const { url } = Astro;
+
+const { props } = Astro;
+
+for (const key of [...url.searchParams.keys()]) {
+  props[key] = url.searchParams.get(key) ?? props[key];
+}
+---
+
+<DialogActionButton />
