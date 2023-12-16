@@ -1,19 +1,18 @@
 ---
-import actionIcon from "../../../assets/action-icon.svg?raw";
+import icon from "./_assets/icon.svg?raw";
 
-const { url } = Astro;
+import { useProps } from "../../../utils/props";
 
-const { props } = Astro;
-
-for (const key of [...url.searchParams.keys()]) {
-  props[key] = url.searchParams.get(key) ?? props[key];
-}
+const props = useProps(Astro);
 
 const opened = !!props.opened;
+
+const id = "htmx-dialog";
 ---
 
 <button
   {...props}
+  id={id}
   class="tw-flex tw-flex-col tw-justify-end tw-w-16 tw-z-10 tw-items-center"
   hx-get={`/htmx/dialog/${opened ? `close` : `open`}`}
   hx-trigger="click"
@@ -23,6 +22,6 @@ const opened = !!props.opened;
   <div
     class="tw-gap-4 tw-flex tw-flex-col tw-items-center tw-justify-center tw-rounded-full tw-bg-[#4f62f0] tw-min-h-[4rem] tw-min-w-[4rem]"
   >
-    <Fragment set:html={actionIcon} />
+    <Fragment set:html={icon} />
   </div>
 </button>

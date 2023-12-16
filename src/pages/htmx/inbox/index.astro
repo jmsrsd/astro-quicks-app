@@ -1,29 +1,57 @@
 ---
-import inboxIcon from "../../../assets/inbox-icon.svg?raw";
+import icon from "./_assets/icon.svg?raw";
+import iconWhite from "./_assets/icon-white.svg?raw";
 
-const { url } = Astro;
+import { useProps, propsToParams } from "../../../utils/props";
 
-const { props } = Astro;
+const props = useProps(Astro);
 
-for (const key of [...url.searchParams.keys()]) {
-  props[key] = url.searchParams.get(key) ?? props[key];
-}
+const selected = Object.keys(props).includes("selected");
+
+const text = `${props.text}` !== "false";
+
+const params = propsToParams(props);
+
+selected ? params.delete("selected") : params.set("selected", `${true}`);
+selected ? params.delete("text") : params.set("text", `${false}`);
+
+const backgroundStyle = {
+  backgroundColor: selected ? "#4f4f4f" : "transparent",
+  transform: selected ? "translate(-7%)" : undefined,
+};
+
+const foregroundStyle = {
+  backgroundColor: selected ? "#9a5cff" : "#f2f2f2",
+  transform: selected ? "translate(7%)" : undefined,
+};
+
+const textStyle = {
+  transform: text === false ? "scale(0%)" : undefined,
+  position: text === false ? "absolute" : undefined,
+};
+
+const id = "htmx-inbox";
 ---
 
 <button
   {...props}
+  id={id}
   class="tw-z-10 tw-gap-4 tw-items-center tw-flex tw-flex-col tw-justify-end tw-w-16"
+  hx-get={`/htmx/inbox?${params.toString()}`}
+  hx-swap="outerHTML"
 >
   <div
-    class="tw-absolute tw-w-[68px] tw-h-[68px] tw-bottom-0 tw-rounded-full tw-bg-[#4f4f4f] -tw-z-10"
+    class="tw-absolute tw-w-[4rem] tw-h-[4rem] tw-bottom-0 tw-rounded-full tw-bg-[#4f4f4f] -tw-z-10"
+    style={backgroundStyle}
   >
   </div>
-  <div class="tw-font-bold tw-text-sm tw-text-[#f2f2f2]">
+  <div class="tw-font-bold tw-text-sm tw-text-[#f2f2f2]" style={textStyle}>
     {`Inbox`}
   </div>
   <div
-    class="tw-flex tw-flex-col tw-items-center tw-justify-center tw-rounded-full tw-bg-[#f2f2f2] tw-min-h-[4rem] tw-min-w-[4rem]"
+    class="tw-flex tw-flex-col tw-items-center tw-justify-center tw-rounded-full tw-min-h-[4rem] tw-min-w-[4rem]"
+    style={foregroundStyle}
   >
-    <Fragment set:html={inboxIcon} />
+    <Fragment set:html={selected ? iconWhite : icon} />
   </div>
 </button>

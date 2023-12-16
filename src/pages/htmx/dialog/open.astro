@@ -1,18 +1,16 @@
 ---
-import Dialog from "./index.astro";
+import Action from "./index.astro";
 import Inbox from "../inbox/index.astro";
+import Task from "../task/index.astro";
 import Container from "./container.astro";
 
-const { url } = Astro;
+import { useProps } from "../../../utils/props";
 
-const { props } = Astro;
-
-for (const key of [...url.searchParams.keys()]) {
-  props[key] = url.searchParams.get(key) ?? props[key];
-}
+const props = useProps(Astro);
 ---
 
-<Container>
-  <Dialog opened />
+<Container {...props}>
+  <Action opened />
   <Inbox />
+  <Task />
 </Container>

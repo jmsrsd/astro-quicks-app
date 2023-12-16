@@ -1,0 +1,30 @@
+---
+import icon from "./_assets/icon.svg?raw";
+
+import { useProps } from "../../../utils/props";
+
+const props = useProps(Astro);
+
+const selected = !!props.selected;
+
+const id = "htmx-task";
+---
+
+<button
+  {...props}
+  id={id}
+  class="tw-z-10 tw-gap-4 tw-items-center tw-flex tw-flex-col tw-justify-end tw-w-16"
+>
+  <div
+    class="tw-absolute tw-w-[68px] tw-h-[68px] tw-bottom-0 tw-rounded-full tw-bg-[#4f4f4f] -tw-z-10"
+  >
+  </div>
+  <div class="tw-font-bold tw-text-sm tw-text-[#f2f2f2]">
+    {`Task`}
+  </div>
+  <div
+    class="tw-flex tw-flex-col tw-items-center tw-justify-center tw-rounded-full tw-bg-[#f2f2f2] tw-min-h-[68px] tw-min-w-[68px]"
+  >
+    <Fragment set:html={icon} />
+  </div>
+</button>

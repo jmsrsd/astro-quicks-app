@@ -1,13 +1,8 @@
 ---
-import DialogActionButton from "./index.astro";
+import Action from "./index.astro";
+import { useProps } from "../../../utils/props";
 
-const { url } = Astro;
-
-const { props } = Astro;
-
-for (const key of [...url.searchParams.keys()]) {
-  props[key] = url.searchParams.get(key) ?? props[key];
-}
+const props = useProps(Astro);
 ---
 
-<DialogActionButton />
+<Action {...props} />

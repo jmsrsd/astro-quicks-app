@@ -1,9 +1,17 @@
 ---
-import searchIcon from "../../../assets/search-icon.svg?raw";
+import icon from "./_assets/icon.svg?raw";
+
+import { useProps } from "../../../utils/props";
+
+const props = useProps(Astro);
+
+const id = "htmx-search";
 ---
 
 <div
+  {...props}
+  id={id}
   class="tw-w-full tw-h-[58px] tw-bg-[#4F4F4F] tw-flex tw-flex-row tw-items-center tw-justify-start tw-px-6"
 >
-  <Fragment set:html={searchIcon} />
+  <Fragment set:html={icon} />
 </div>
