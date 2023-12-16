@@ -1,5 +1,5 @@
 ---
-import actionIcon from "../../../../assets/action-icon.svg?raw";
+import actionIcon from "../../../assets/action-icon.svg?raw";
 
 const { url } = Astro;
 
@@ -15,10 +15,10 @@ const opened = !!props.opened;
 <button
   {...props}
   class="tw-flex tw-flex-col tw-justify-end tw-w-16 tw-z-10 tw-items-center"
-  hx-get={`/api/htmx/dialog/${opened ? `close` : `open`}-dialog-action-button`}
+  hx-get={`/htmx/dialog/${opened ? `close` : `open`}`}
   hx-trigger="click"
   hx-swap="outerHTML"
-  hx-target={opened ? "#htmx-dialog-action-button-container" : "this"}
+  hx-target={opened ? "#htmx-dialog-container" : "this"}
 >
   <div
     class="tw-gap-4 tw-flex tw-flex-col tw-items-center tw-justify-center tw-rounded-full tw-bg-[#4f62f0] tw-min-h-[4rem] tw-min-w-[4rem]"

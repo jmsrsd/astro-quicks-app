@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import SearchBar from "./api/htmx/search/get-search-bar.astro";
-import DialogActionButton from "./api/htmx/dialog/get-dialog-action-button.astro";
+import Search from "./htmx/search/index.astro";
+import Dialog from "./htmx/dialog/index.astro";
 ---
 
 <Layout>
@@ -14,10 +14,10 @@ import DialogActionButton from "./api/htmx/dialog/get-dialog-action-button.astro
     <div
       class="tw-h-full tw-flex tw-w-full tw-flex-col tw-items-start tw-justify-start"
     >
-      <SearchBar />
+      <Search />
       <div class="tw-h-full tw-w-full tw-flex-col">
         <div class="tw-absolute tw-right-8 tw-bottom-8">
-          <DialogActionButton />
+          <Dialog />
         </div>
       </div>
     </div>

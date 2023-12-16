@@ -1,0 +1,18 @@
+---
+import Dialog from "./index.astro";
+import Inbox from "../inbox/index.astro";
+import Container from "./container.astro";
+
+const { url } = Astro;
+
+const { props } = Astro;
+
+for (const key of [...url.searchParams.keys()]) {
+  props[key] = url.searchParams.get(key) ?? props[key];
+}
+---
+
+<Container>
+  <Dialog opened />
+  <Inbox />
+</Container>
